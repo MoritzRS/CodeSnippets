@@ -9,3 +9,7 @@ export const BUFFER = writable<Note>(null);
 export function clearBuffer() {
 	BUFFER.set(null);
 }
+
+export function setBuffer(note: Note) {
+	BUFFER.set(note);
+}

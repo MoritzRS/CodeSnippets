@@ -10,8 +10,10 @@
 		<Sidebar />
 		<Explorer />
 		<Content>
-			<slot />
+			<slot name="content" />
 		</Content>
+
+		<slot name="dialogs" />
 	</div>
 </template>
 

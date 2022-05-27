@@ -1,8 +1,22 @@
 <script lang="ts">
+	import { ExplorerStates, EXPLORER_STATE } from "$lib/modules/explorer/explorer";
+	import NotesView from "./notesview/NotesView.svelte";
 </script>
 
 <template>
-	<div class="flex flex-col h-full w-96 flex-shrink-0 overflow-hidden bg-base-200" />
+	{#if $EXPLORER_STATE !== ExplorerStates.Closed}
+		<div
+			class="flex flex-col h-full w-96 flex-shrink-0 overflow-hidden bg-base-200 fixed left-16 lg:static lg:left-0 z-10"
+		>
+			{#if $EXPLORER_STATE == ExplorerStates.NotesView}
+				<NotesView />
+			{:else if $EXPLORER_STATE == ExplorerStates.NoteSearch}
+				<NotesView />
+			{:else if $EXPLORER_STATE == ExplorerStates.SnippetSearch}
+				<NotesView />
+			{/if}
+		</div>
+	{/if}
 </template>
 
 <style lang="scss">

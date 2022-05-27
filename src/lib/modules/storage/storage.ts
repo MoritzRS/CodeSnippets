@@ -13,7 +13,7 @@ const FILE_PREFIX = "fp:";
 function getNotes(): Note[] {
 	let notes: Note[] = [];
 	for (let i = 0; i < localStorage.length; i++) {
-		if (localStorage.key(i).startsWith(FILE_PREFIX)) continue;
+		if (!localStorage.key(i).startsWith(FILE_PREFIX)) continue;
 
 		const note: Note = JSON.parse(localStorage.getItem(localStorage.key(i)));
 		notes = [...notes, note];
@@ -74,7 +74,7 @@ function hasNote(title: string): boolean {
 function findNotes(search: string, caseSensitive = false): Note[] {
 	let notes = [];
 	for (let i = 0; i < localStorage.length; i++) {
-		if (localStorage.key(i).startsWith(FILE_PREFIX)) continue;
+		if (!localStorage.key(i).startsWith(FILE_PREFIX)) continue;
 
 		const note: Note = JSON.parse(localStorage.getItem(localStorage.key(i)));
 
@@ -95,7 +95,7 @@ function findNotes(search: string, caseSensitive = false): Note[] {
 function findSnippets(search: string, caseSensitive = false): Note[] {
 	let notes = [];
 	for (let i = 0; i < localStorage.length; i++) {
-		if (localStorage.key(i).startsWith(FILE_PREFIX)) continue;
+		if (!localStorage.key(i).startsWith(FILE_PREFIX)) continue;
 
 		const note: Note = JSON.parse(localStorage.getItem(localStorage.key(i)));
 
