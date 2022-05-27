@@ -2,10 +2,8 @@
 </script>
 
 <template>
-	<div class="flex flex-col items-center justify-center flex-grow flex-shrink-0  overflow-hidden bg-base-100">
-		<div class="p-4 w-full max-w-5xl">
-			<slot />
-		</div>
+	<div class="flex flex-col flex-grow flex-shrink-0  overflow-hidden bg-base-100">
+		<slot />
 	</div>
 </template>
 
