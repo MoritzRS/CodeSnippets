@@ -1,7 +1,7 @@
 <script lang="ts">
 	import MoonIcon from "$lib/icons/MoonIcon.svelte";
 	import SunIcon from "$lib/icons/SunIcon.svelte";
-	import { COLOR_THEME, toggleColorTheme } from "$lib/modules/theme/theme";
+	import { SETTINGS, SettingManager } from "$lib/modules/settings/settings";
 </script>
 
 <template>
@@ -10,9 +10,9 @@
 			type="button"
 			class="btn btn-ghost w-full h-full"
 			title="Toggle Color Theme"
-			on:click={toggleColorTheme}
+			on:click={SettingManager.toggleDarkMode}
 		>
-			{#if $COLOR_THEME == "dark"}
+			{#if $SETTINGS.darkMode}
 				<MoonIcon size={48} />
 			{:else}
 				<SunIcon size={48} />
