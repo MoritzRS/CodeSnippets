@@ -1,0 +1,17 @@
+{
+	"Svelte Layout": {
+		"scope": "svelte",
+		"prefix": "svelte",
+		"body": [
+			"<script lang=\"ts\">",
+			"</script>",
+			"",
+			"<template>",
+			"\t$0",
+			"</template>",
+			"",
+			"<style lang=\"scss\">",
+			"</style>\n"
+		]
+	}
+}
