@@ -1,9 +1,8 @@
 <script lang="ts">
-	import Layout from "$lib/components/layout/Layout.svelte";
 </script>
 
 <template>
-	<Layout />
+	<div class="flex flex-col h-full w-96 bg-base-200" />
 </template>
 
 <style lang="scss">
