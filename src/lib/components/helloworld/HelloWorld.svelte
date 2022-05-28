@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { DialogManager } from "$lib/modules/dialogs/dialog";
 </script>
 
 <template>
@@ -8,6 +9,30 @@
 				<h1 class="text-6xl font-bold text-center">codeSnippets</h1>
 
 				<div class="divider">By Moritz R. S. and Lucas H.</div>
+
+				<div class="flex flex-wrap justify-between">
+					<button
+						type="button"
+						class="btn btn-sm btn-outline btn-primary"
+						on:click={DialogManager.toggleDialogCreate}
+					>
+						<span>Create Note</span>
+					</button>
+					<button
+						type="button"
+						class="btn btn-sm btn-outline btn-secondary"
+						on:click={DialogManager.toggleImportExportDialog}
+					>
+						<span>Import Data</span>
+					</button>
+					<button
+						type="button"
+						class="btn btn-sm btn-outline btn-accent"
+						on:click={DialogManager.toggleDialogSettings}
+					>
+						<span>Settings</span>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
