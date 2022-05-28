@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { ExplorerStates, EXPLORER_STATE } from "$lib/modules/explorer/explorer";
+	import NoteSearch from "./notesearch/NoteSearch.svelte";
 	import NotesView from "./notesview/NotesView.svelte";
+	import SnippetSearch from "./snippetsearch/SnippetSearch..svelte";
 </script>
 
 <template>
@@ -11,9 +13,9 @@
 			{#if $EXPLORER_STATE == ExplorerStates.NotesView}
 				<NotesView />
 			{:else if $EXPLORER_STATE == ExplorerStates.NoteSearch}
-				<NotesView />
+				<NoteSearch />
 			{:else if $EXPLORER_STATE == ExplorerStates.SnippetSearch}
-				<NotesView />
+				<SnippetSearch />
 			{/if}
 		</div>
 	{/if}

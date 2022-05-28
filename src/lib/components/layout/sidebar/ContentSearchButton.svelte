@@ -9,7 +9,7 @@
 			type="button"
 			class="btn btn-ghost w-full h-full"
 			class:btn-active={$EXPLORER_STATE == ExplorerStates.SnippetSearch}
-			title="Content Search"
+			title="Snippet Search"
 			on:click={ExplorerStateManager.toggleSnippetSearch}
 		>
 			<SearchIcon size={32} />

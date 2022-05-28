@@ -9,7 +9,7 @@
 			type="button"
 			class="btn btn-ghost w-full h-full"
 			class:btn-active={$EXPLORER_STATE == ExplorerStates.NoteSearch}
-			title="Snippet Search"
+			title="Note Search"
 			on:click={ExplorerStateManager.toggleNoteSearch}
 		>
 			<DocumentSearchIcon size={48} />
