@@ -13,3 +13,9 @@ export function clearBuffer() {
 export function setBuffer(note: Note) {
 	BUFFER.set(note);
 }
+
+export function removeSnippet(id: string) {
+	BUFFER.update((buffer) => {
+		return { ...buffer, snippets: buffer.snippets.filter((s) => s.id !== id) };
+	});
+}

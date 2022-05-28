@@ -5,7 +5,7 @@
 </script>
 
 <template>
-	<select class="select select-bordered" bind:value={language}>
+	<select class="select select-sm" bind:value={language}>
 		{#each supportedLanguages as language}
 			<option value={language.id}>{language.name}</option>
 		{/each}

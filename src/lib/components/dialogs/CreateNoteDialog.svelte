@@ -23,6 +23,7 @@
 			title: name,
 			snippets: [
 				{
+					id: "0",
 					title: "Sample",
 					language: "javascript",
 					content: 'console.log("Test");'

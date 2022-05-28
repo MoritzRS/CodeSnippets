@@ -6,8 +6,15 @@
 	import Snippet from "./snippet/Snippet.svelte";
 
 	function addSnippet() {
-		let snippet = { title: "untitled", language: "javascript", content: "console.log('Hello World');" };
-		BUFFER.update((buffer) => ({ ...buffer, snippets: [...buffer.snippets, snippet] }));
+		BUFFER.update((buffer) => {
+			let snippet = {
+				id: buffer.snippets.length.toString(),
+				title: "untitled",
+				language: "javascript",
+				content: "console.log('Hello World');"
+			};
+			return { ...buffer, snippets: [...buffer.snippets, snippet] };
+		});
 
 		Storage.writeNote($BUFFER);
 	}
@@ -15,10 +22,10 @@
 
 <template>
 	<Bar />
-	<div class="flex-1 py-12 overflow-y-auto">
+	<div class="flex-1 py-12 px-4 overflow-y-auto">
 		<div class="flex flex-col gap-12 items-center justify-center">
 			{#key $BUFFER.snippets}
-				{#each $BUFFER.snippets as snippet, i}
+				{#each $BUFFER.snippets as snippet}
 					<Snippet {snippet} />
 				{/each}
 			{/key}
