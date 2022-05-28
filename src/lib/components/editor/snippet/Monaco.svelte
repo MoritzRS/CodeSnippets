@@ -53,6 +53,16 @@
 				save($BUFFER);
 			}
 		});
+
+		// add custom commandline shortcut
+		editor.addAction({
+			id: "quickCommand",
+			label: "Open Command Palette",
+			keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyP],
+			run: function () {
+				editor.trigger(null, "editor.action.quickCommand", null);
+			}
+		});
 	});
 
 	onDestroy(() => {
