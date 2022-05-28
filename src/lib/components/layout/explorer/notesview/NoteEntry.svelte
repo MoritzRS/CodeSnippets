@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { BUFFER, setBuffer } from "$lib/modules/buffer/buffer";
+	import TrashIcon from "$lib/icons/TrashIcon.svelte";
+	import { BUFFER, clearBuffer, setBuffer } from "$lib/modules/buffer/buffer";
+	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
 	import { Storage } from "$lib/modules/storage/storage";
 
 	import type { Note } from "$lib/modules/types";
@@ -9,16 +11,25 @@
 	function open() {
 		setBuffer(Storage.getNote(note.title));
 	}
+
+	function remove() {
+		if ($BUFFER?.title == note.title) clearBuffer();
+		Storage.deleteNote(note.title);
+		refreshFileTree();
+	}
 </script>
 
 <template>
 	<button
 		type="button"
-		class="p-2 text-sm text-left hover:bg-base-300"
+		class="flex flex-row justify-between items-center p-2 text-sm text-left hover:bg-base-300"
 		class:bg-base-300={$BUFFER?.title == note.title}
-		on:click={open}
+		on:click|self={open}
 	>
 		<span>{note.title}</span>
+		<button type="button" class="btn btn-sm btn-square btn-ghost" on:click={remove}>
+			<TrashIcon size={16} />
+		</button>
 	</button>
 </template>
 
