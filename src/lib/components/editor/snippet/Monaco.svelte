@@ -9,6 +9,7 @@
 	import { onDestroy, onMount } from "svelte";
 
 	export let snippet: Snippet;
+	export let length = 0;
 	let container: HTMLElement;
 	let editor: monaco.editor.IStandaloneCodeEditor;
 
@@ -42,9 +43,11 @@
 			value: snippet.content,
 			language: snippet.language
 		});
+		length = snippet.content.length;
 
 		editor.getModel().onDidChangeContent(() => {
 			snippet.content = editor.getModel().getValue();
+			length = snippet.content.length;
 			if ($SETTINGS.autoSave) {
 				const save = async (buffer: Note) => Storage.writeNote(buffer);
 				save($BUFFER);

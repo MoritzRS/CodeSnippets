@@ -5,6 +5,7 @@
 	import Monaco from "./Monaco.svelte";
 
 	export let snippet: Snippet;
+	let length = 0;
 </script>
 
 <template>
@@ -15,8 +16,9 @@
 				<DeleteButton id={snippet.id} />
 			</span>
 		</div>
-		<Monaco {snippet} />
-		<div class="w-full flex flex-row justify-end p-1">
+		<Monaco {snippet} bind:length />
+		<div class="w-full flex flex-row justify-between items-center p-1">
+			<span class="badge" title="Characters">{length}</span>
 			<LanguageSelector bind:language={snippet.language} />
 		</div>
 	</div>
