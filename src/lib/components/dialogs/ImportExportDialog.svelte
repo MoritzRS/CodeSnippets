@@ -1,4 +1,6 @@
 <script lang="ts">
+	import RefreshIcon from "$lib/icons/RefreshIcon.svelte";
+	import { clearBuffer } from "$lib/modules/buffer/buffer";
 	import { DialogManager, DIALOG_IMPORT_EXPORT } from "$lib/modules/dialogs/dialog";
 	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
 	import { SettingManager, SETTINGS } from "$lib/modules/settings/settings";
@@ -25,6 +27,7 @@
 			refreshFileTree();
 		}
 
+		clearBuffer();
 		DialogManager.toggleImportExportDialog();
 	}
 
@@ -47,6 +50,15 @@
 
 		DialogManager.toggleImportExportDialog();
 	}
+
+	function resetData() {
+		SettingManager.resetSettings();
+		SettingManager.saveSettings();
+
+		Storage.getNotes().forEach((note) => Storage.deleteNote(note.title));
+		clearBuffer();
+		refreshFileTree();
+	}
 </script>
 
 <template>
@@ -67,6 +79,15 @@
 			<div class="input-group w-full">
 				<input type="text" class="input input-bordered" bind:value={filename} />
 				<button type="button" class="btn" on:click={exportData}>Export</button>
+			</div>
+
+			<div class="divider" />
+
+			<div class="flex justify-end">
+				<button type="button" class="btn gap-1" on:click={resetData}>
+					<RefreshIcon size={16} />
+					<span>Reset Storage</span>
+				</button>
 			</div>
 		</Dialog>
 	{/if}
