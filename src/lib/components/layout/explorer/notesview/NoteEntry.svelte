@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { setBuffer } from "$lib/modules/buffer/buffer";
+	import { BUFFER, setBuffer } from "$lib/modules/buffer/buffer";
 	import { Storage } from "$lib/modules/storage/storage";
 
 	import type { Note } from "$lib/modules/types";
@@ -12,7 +12,12 @@
 </script>
 
 <template>
-	<button type="button" class="py-1 px-2 text-sm text-left hover:bg-base-300" on:click={open}>
+	<button
+		type="button"
+		class="p-2 text-sm text-left hover:bg-base-300"
+		class:bg-base-300={$BUFFER?.title == note.title}
+		on:click={open}
+	>
 		<span>{note.title}</span>
 	</button>
 </template>

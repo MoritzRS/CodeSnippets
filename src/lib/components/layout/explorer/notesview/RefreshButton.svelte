@@ -4,7 +4,7 @@
 </script>
 
 <template>
-	<button type="button" class="btn btn-sm btn-ghost btn-square" title="Create new File" on:click={refreshFileTree}>
+	<button type="button" class="btn btn-sm btn-ghost btn-square" title="Refresh" on:click={refreshFileTree}>
 		<RefreshIcon size={24} />
 	</button>
 </template>

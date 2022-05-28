@@ -19,7 +19,7 @@
 			<CreateButton />
 		</div>
 	</div>
-	<div class="flex flex-col gap-1 overflow-y-auto min-h-full">
+	<div class="flex flex-col overflow-y-auto min-h-full">
 		{#each $FILE_TREE as note}
 			<NoteEntry {note} />
 		{:else}

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import CreateNoteDialog from "$lib/components/dialogs/CreateNoteDialog.svelte";
+	import Editor from "$lib/components/editor/Editor.svelte";
 	import HelloWorld from "$lib/components/helloworld/HelloWorld.svelte";
 	import Layout from "$lib/components/layout/Layout.svelte";
+	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { SettingManager } from "$lib/modules/settings/settings";
 	import { onMount } from "svelte";
 
@@ -14,7 +16,11 @@
 	<!-- Base Layout -->
 	<Layout>
 		<svelte:fragment slot="content">
-			<HelloWorld />
+			{#if !$BUFFER}
+				<HelloWorld />
+			{:else}
+				<Editor />
+			{/if}
 		</svelte:fragment>
 
 		<svelte:fragment slot="dialogs">

@@ -21,7 +21,13 @@
 	function create() {
 		let note: Note = {
 			title: name,
-			snippets: []
+			snippets: [
+				{
+					title: "Sample",
+					language: "javascript",
+					content: 'console.log("Test");'
+				}
+			]
 		};
 		Storage.writeNote(note);
 		refreshFileTree();
