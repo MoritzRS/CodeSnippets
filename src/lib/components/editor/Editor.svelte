@@ -17,9 +17,11 @@
 	<Bar />
 	<div class="flex-1 py-12 overflow-y-auto">
 		<div class="flex flex-col gap-12 items-center justify-center">
-			{#each $BUFFER.snippets as _, i}
-				<Snippet index={i} />
-			{/each}
+			{#key $BUFFER.snippets}
+				{#each $BUFFER.snippets as snippet, i}
+					<Snippet {snippet} />
+				{/each}
+			{/key}
 			<button type="button" class="btn btn-primary gap-1" on:click={addSnippet}>
 				<PlusCircleIcon />
 				<span>Add Snippet</span>

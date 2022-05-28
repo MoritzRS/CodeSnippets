@@ -1,17 +1,21 @@
 <script lang="ts">
-	import { BUFFER } from "$lib/modules/buffer/buffer";
+	import type { Snippet } from "$lib/modules/types";
+	import Monaco from "./Monaco.svelte";
 
-	export let index: number;
+	export let snippet: Snippet;
 </script>
 
 <template>
 	<div class="w-full max-w-5xl border">
 		<div class="w-full p-2 flex flex-row justify-between">
-			<span>{$BUFFER.snippets[index].title}</span>
-			<span>{$BUFFER.snippets[index].language}</span>
+			<span>{snippet.title}</span>
+			<select class="select select-bordered" bind:value={snippet.language}>
+				<option value="javascript">javascript</option>
+				<option value="typescript">typescript</option>
+			</select>
 		</div>
 		<div class="w-full p-4">
-			<span>{$BUFFER.snippets[index].content}</span>
+			<Monaco {snippet} />
 		</div>
 	</div>
 </template>

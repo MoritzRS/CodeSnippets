@@ -1,4 +1,5 @@
 import "$lib/styles";
+import "./monacoWorker";
 import App from "./App.svelte";
 
 const app = new App({
