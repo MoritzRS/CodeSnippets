@@ -1,6 +1,8 @@
 <script lang="ts">
 	import PlusCircleIcon from "$lib/icons/PlusCircleIcon.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
+	import { SETTINGS } from "$lib/modules/settings/settings";
+	import { Storage } from "$lib/modules/storage/storage";
 	import Bar from "./bar/Bar.svelte";
 	import Snippet from "./snippet/Snippet.svelte";
 
@@ -8,12 +10,13 @@
 		BUFFER.update((buffer) => {
 			let snippet = {
 				id: buffer.snippets.length.toString(),
-				title: "untitled",
+				title: "untitled.js",
 				language: "javascript",
 				content: "console.log('Hello World');"
 			};
 			return { ...buffer, snippets: [...buffer.snippets, snippet] };
 		});
+		if ($SETTINGS.autoSave) Storage.writeNote($BUFFER);
 	}
 </script>
 

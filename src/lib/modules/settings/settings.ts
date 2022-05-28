@@ -13,7 +13,7 @@ const defaultSettings: Settings = {
 	darkMode: true,
 	minimap: false,
 	fontSize: 16,
-	autoSave: false
+	autoSave: true
 };
 
 /**
