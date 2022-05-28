@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CreateNoteDialog from "$lib/components/dialogs/CreateNoteDialog.svelte";
+	import SettingsDialog from "$lib/components/dialogs/SettingsDialog.svelte";
 	import Editor from "$lib/components/editor/Editor.svelte";
 	import HelloWorld from "$lib/components/helloworld/HelloWorld.svelte";
 	import Layout from "$lib/components/layout/Layout.svelte";
@@ -25,6 +26,7 @@
 
 		<svelte:fragment slot="dialogs">
 			<CreateNoteDialog />
+			<SettingsDialog />
 		</svelte:fragment>
 	</Layout>
 </template>

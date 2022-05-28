@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { SETTINGS } from "$lib/modules/settings/settings";
+	import { BUFFER } from "$lib/modules/buffer/buffer";
 
-	import type { Snippet } from "$lib/modules/types";
+	import { SETTINGS } from "$lib/modules/settings/settings";
+	import { Storage } from "$lib/modules/storage/storage";
+
+	import type { Note, Snippet } from "$lib/modules/types";
 	import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 	import { onDestroy, onMount } from "svelte";
 
@@ -18,6 +21,12 @@
 	$: {
 		if (editor) {
 			monaco.editor.setModelLanguage(editor.getModel(), snippet.language);
+			editor.updateOptions({
+				minimap: {
+					enabled: $SETTINGS.minimap
+				},
+				fontSize: $SETTINGS.fontSize
+			});
 		}
 	}
 
@@ -36,6 +45,10 @@
 
 		editor.getModel().onDidChangeContent(() => {
 			snippet.content = editor.getModel().getValue();
+			if ($SETTINGS.autoSave) {
+				const save = async (buffer: Note) => Storage.writeNote(buffer);
+				save($BUFFER);
+			}
 		});
 	});
 

@@ -10,7 +10,10 @@ const SETTING_KEY = "settings";
  * default settings
  */
 const defaultSettings: Settings = {
-	darkMode: true
+	darkMode: true,
+	minimap: false,
+	fontSize: 16,
+	autoSave: false
 };
 
 /**

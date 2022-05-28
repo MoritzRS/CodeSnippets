@@ -12,4 +12,7 @@ export type Note = {
 
 export type Settings = {
 	darkMode: boolean;
+	minimap: boolean;
+	fontSize: number;
+	autoSave: boolean;
 };

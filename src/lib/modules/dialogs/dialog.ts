@@ -6,6 +6,13 @@ function toggleDialogCreate() {
 	DIALOG_CREATE.update((state) => !state);
 }
 
+export const DIALOG_SETTINGS = writable(false);
+
+function toggleDialogSettings() {
+	DIALOG_SETTINGS.update((state) => !state);
+}
+
 export const DialogManager = {
-	toggleDialogCreate
+	toggleDialogCreate,
+	toggleDialogSettings
 };
