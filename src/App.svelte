@@ -16,10 +16,10 @@
 	<!-- Base Layout -->
 	<Layout>
 		<svelte:fragment slot="content">
-			{#if !$BUFFER}
-				<HelloWorld />
-			{:else}
+			{#if $BUFFER}
 				<Editor />
+			{:else}
+				<HelloWorld />
 			{/if}
 		</svelte:fragment>
 

@@ -34,7 +34,7 @@
 			language: snippet.language
 		});
 
-		editor.onDidChangeModel(() => {
+		editor.getModel().onDidChangeContent(() => {
 			snippet.content = editor.getModel().getValue();
 		});
 	});

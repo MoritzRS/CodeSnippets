@@ -1,10 +1,31 @@
 <script lang="ts">
-	import { BUFFER } from "$lib/modules/buffer/buffer";
+	import CheckIcon from "$lib/icons/CheckIcon.svelte";
+	import { BUFFER, clearBuffer } from "$lib/modules/buffer/buffer";
+	import { Storage } from "$lib/modules/storage/storage";
+
+	function save() {
+		console.log($BUFFER);
+		Storage.writeNote($BUFFER);
+	}
+
+	function close() {
+		clearBuffer();
+	}
 </script>
 
 <template>
-	<div class="flex w-full bg-base-300 p-3 shadow-md">
+	<div class="flex flex-row justify-between items-center w-full bg-base-300 p-3 shadow-md">
 		<span>{$BUFFER.title}</span>
+
+		<span class="flex gap-3">
+			<button type="button" class="btn btn-outline btn-secondary" title="Close without Saving" on:click={close}>
+				<span>Close</span>
+			</button>
+			<button type="button" class="btn btn-primary" title="Save Changes" on:click={save}>
+				<CheckIcon />
+				<span>Save</span>
+			</button>
+		</span>
 	</div>
 </template>
 
