@@ -4,18 +4,19 @@ import type { Note } from "../types";
 /**
  * Contains the currently accessed note
  */
-export const BUFFER = writable<Note>(null);
+export const BUFFER = (function () {
+	const { subscribe, set, update } = writable<Note>(null);
 
-export function clearBuffer() {
-	BUFFER.set(null);
-}
+	const clear = () => update((state) => null);
 
-export function setBuffer(note: Note) {
-	BUFFER.set(note);
-}
+	const removeSnippet = (id: string) =>
+		update((state) => ({ ...state, snippets: state.snippets.filter((s) => s.id !== id) }));
 
-export function removeSnippet(id: string) {
-	BUFFER.update((buffer) => {
-		return { ...buffer, snippets: buffer.snippets.filter((s) => s.id !== id) };
-	});
-}
+	return {
+		subscribe,
+		set,
+		update,
+		clear,
+		removeSnippet
+	};
+})();

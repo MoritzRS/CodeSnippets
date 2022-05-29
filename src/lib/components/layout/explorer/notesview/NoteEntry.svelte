@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TrashIcon from "$lib/icons/TrashIcon.svelte";
-	import { BUFFER, clearBuffer, setBuffer } from "$lib/modules/buffer/buffer";
+	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
 	import { Storage } from "$lib/modules/storage/storage";
 
@@ -9,11 +9,11 @@
 	export let note: Note;
 
 	function open() {
-		setBuffer(Storage.getNote(note.title));
+		BUFFER.set(Storage.getNote(note.title));
 	}
 
 	function remove() {
-		if ($BUFFER?.title == note.title) clearBuffer();
+		if ($BUFFER?.title == note.title) BUFFER.clear();
 		Storage.deleteNote(note.title);
 		refreshFileTree();
 	}

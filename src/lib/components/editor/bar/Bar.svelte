@@ -1,15 +1,14 @@
 <script lang="ts">
 	import CheckIcon from "$lib/icons/CheckIcon.svelte";
-	import { BUFFER, clearBuffer } from "$lib/modules/buffer/buffer";
+	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { Storage } from "$lib/modules/storage/storage";
 
 	function save() {
-		console.log($BUFFER);
 		Storage.writeNote($BUFFER);
 	}
 
 	function close() {
-		clearBuffer();
+		BUFFER.clear();
 	}
 </script>
 

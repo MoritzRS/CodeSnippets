@@ -1,6 +1,6 @@
 <script lang="ts">
 	import RefreshIcon from "$lib/icons/RefreshIcon.svelte";
-	import { clearBuffer } from "$lib/modules/buffer/buffer";
+	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { DIALOG } from "$lib/modules/dialogs/dialog";
 	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
 	import { SettingManager, SETTINGS } from "$lib/modules/settings/settings";
@@ -27,7 +27,7 @@
 			refreshFileTree();
 		}
 
-		clearBuffer();
+		BUFFER.clear();
 		DIALOG.toggleImportExport();
 	}
 
@@ -56,7 +56,7 @@
 		SettingManager.saveSettings();
 
 		Storage.getNotes().forEach((note) => Storage.deleteNote(note.title));
-		clearBuffer();
+		BUFFER.clear();
 		refreshFileTree();
 	}
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BUFFER, setBuffer } from "$lib/modules/buffer/buffer";
+	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { Storage } from "$lib/modules/storage/storage";
 
 	import type { Note } from "$lib/modules/types";
@@ -7,7 +7,7 @@
 	export let note: Note;
 
 	function open() {
-		setBuffer(Storage.getNote(note.title));
+		BUFFER.set(Storage.getNote(note.title));
 	}
 </script>
 

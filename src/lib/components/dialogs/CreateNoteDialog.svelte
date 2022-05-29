@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { setBuffer } from "$lib/modules/buffer/buffer";
+	import { BUFFER } from "$lib/modules/buffer/buffer";
 
 	import { DIALOG } from "$lib/modules/dialogs/dialog";
 	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
@@ -27,7 +27,7 @@
 		};
 		Storage.writeNote(note);
 		refreshFileTree();
-		setBuffer(Storage.getNote(name));
+		BUFFER.set(note);
 		name = "";
 		DIALOG.toggleCreate();
 	}
