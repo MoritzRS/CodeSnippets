@@ -4,14 +4,14 @@
 </script>
 
 <template>
-	<div class="w-16 h-16">
+	<div class="w-14 h-14 p-2">
 		<button
 			type="button"
-			class="btn btn-ghost w-full h-full"
+			class="btn btn-xs btn-ghost w-full h-full"
 			title="Import/Export"
 			on:click={DIALOG.toggleImportExport}
 		>
-			<DatabaseIcon size={48} />
+			<DatabaseIcon size={24} />
 		</button>
 	</div>
 </template>

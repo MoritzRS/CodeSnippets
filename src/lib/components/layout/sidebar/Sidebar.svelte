@@ -8,7 +8,7 @@
 </script>
 
 <template>
-	<div class="flex flex-col h-full w-16 flex-shrink-0 overflow-hidden bg-base-300">
+	<div class="flex flex-col h-full w-14 flex-shrink-0 overflow-hidden bg-base-300">
 		<FilesButton />
 		<FileSearchButton />
 		<ContentSearchButton />

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CheckIcon from "$lib/icons/CheckIcon.svelte";
+	import XIcon from "$lib/icons/XIcon.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 
@@ -17,12 +18,11 @@
 		<span>{$BUFFER.title}</span>
 
 		<span class="flex gap-3">
-			<button type="button" class="btn btn-outline btn-secondary" title="Close without Saving" on:click={close}>
-				<span>Close</span>
+			<button type="button" class="btn btn-xs btn-circle btn-secondary" title="Close File" on:click={close}>
+				<XIcon />
 			</button>
-			<button type="button" class="btn btn-primary" title="Save Changes" on:click={save}>
+			<button type="button" class="btn btn-xs btn-circle btn-primary" title="Save Changes" on:click={save}>
 				<CheckIcon />
-				<span>Save</span>
 			</button>
 		</span>
 	</div>

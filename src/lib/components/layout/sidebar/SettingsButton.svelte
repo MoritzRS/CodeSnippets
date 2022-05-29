@@ -4,9 +4,14 @@
 </script>
 
 <template>
-	<div class="w-16 h-16">
-		<button type="button" class="btn btn-ghost w-full h-full" title="Settings" on:click={DIALOG.toggleSettings}>
-			<CogIcon size={48} />
+	<div class="w-14 h-14 p-2">
+		<button
+			type="button"
+			class="btn btn-xs btn-ghost w-full h-full"
+			title="Settings"
+			on:click={DIALOG.toggleSettings}
+		>
+			<CogIcon size={24} />
 		</button>
 	</div>
 </template>

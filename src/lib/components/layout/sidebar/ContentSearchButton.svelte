@@ -4,15 +4,14 @@
 </script>
 
 <template>
-	<div class="w-16 h-16">
+	<div class="w-14 h-14 p-2">
 		<button
 			type="button"
-			class="btn btn-ghost w-full h-full"
-			class:btn-active={$EXPLORER == ExplorerStates.ContentSearch}
+			class="btn btn-xs {$EXPLORER == ExplorerStates.ContentSearch ? 'btn-primary' : 'btn-ghost'} w-full h-full"
 			title="Content Search"
 			on:click={EXPLORER.toggleContentSearch}
 		>
-			<SearchIcon size={32} />
+			<SearchIcon size={16} />
 		</button>
 	</div>
 </template>

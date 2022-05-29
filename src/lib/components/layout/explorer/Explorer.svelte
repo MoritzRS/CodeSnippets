@@ -8,7 +8,7 @@
 <template>
 	{#if $EXPLORER !== ExplorerStates.Closed}
 		<div
-			class="flex flex-col h-full w-96 flex-shrink-0 overflow-hidden bg-base-200 fixed left-16 lg:static lg:left-0 z-10"
+			class="flex flex-col h-full w-96 flex-shrink-0 overflow-hidden bg-base-200 fixed left-14 lg:static lg:left-0 z-10"
 		>
 			{#if $EXPLORER == ExplorerStates.Files}
 				<Files />
