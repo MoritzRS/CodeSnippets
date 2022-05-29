@@ -9,7 +9,7 @@
 	let name = "";
 
 	function check(name: string) {
-		return FILESYSTEM.exists(name);
+		return FILESYSTEM.exists(name) || !name;
 	}
 
 	function create() {
