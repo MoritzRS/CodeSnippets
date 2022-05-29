@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fade, scale } from "svelte/transition";
-	export let toggle = () => {};
+	export let toggle: () => void;
 </script>
 
 <template>

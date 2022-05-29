@@ -4,7 +4,7 @@
 	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import { SETTINGS } from "$lib/modules/settings/settings";
 
-	export let id: string;
+	export let id: number;
 
 	function remove() {
 		BUFFER.removeSnippet(id);

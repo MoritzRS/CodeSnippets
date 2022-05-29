@@ -7,15 +7,7 @@
 	import Snippet from "./snippet/Snippet.svelte";
 
 	function addSnippet() {
-		BUFFER.update((buffer) => {
-			let snippet = {
-				id: buffer.snippets.length.toString(),
-				title: "untitled.js",
-				language: "javascript",
-				content: "console.log('Hello World');"
-			};
-			return { ...buffer, snippets: [...buffer.snippets, snippet] };
-		});
+		BUFFER.addSnippet("untitled", "typescript");
 		if ($SETTINGS.autoSave) FILESYSTEM.write($BUFFER);
 	}
 </script>
