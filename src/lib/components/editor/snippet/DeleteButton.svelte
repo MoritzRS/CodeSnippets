@@ -1,14 +1,14 @@
 <script lang="ts">
 	import TrashIcon from "$lib/icons/TrashIcon.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
+	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import { SETTINGS } from "$lib/modules/settings/settings";
-	import { Storage } from "$lib/modules/storage/storage";
 
 	export let id: string;
 
 	function remove() {
 		BUFFER.removeSnippet(id);
-		if ($SETTINGS.autoSave) Storage.writeNote($BUFFER);
+		if ($SETTINGS.autoSave) FILESYSTEM.write($BUFFER);
 	}
 </script>
 

@@ -1,21 +1,18 @@
 <script lang="ts">
 	import TrashIcon from "$lib/icons/TrashIcon.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
-	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
-	import { Storage } from "$lib/modules/storage/storage";
-
+	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import type { Note } from "$lib/modules/types";
 
 	export let note: Note;
 
 	function open() {
-		BUFFER.set(Storage.getNote(note.title));
+		BUFFER.set(note);
 	}
 
 	function remove() {
 		if ($BUFFER?.title == note.title) BUFFER.clear();
-		Storage.deleteNote(note.title);
-		refreshFileTree();
+		FILESYSTEM.remove(note);
 	}
 </script>
 

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Storage } from "$lib/modules/storage/storage";
-
+	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import type { Note } from "$lib/modules/types";
 	import ResultEntry from "./ResultEntry.svelte";
 
@@ -9,7 +8,7 @@
 	let results: Note[] = [];
 
 	function search() {
-		results = Storage.findSnippets(searchString, false);
+		results = FILESYSTEM.findContent(searchString, false);
 	}
 </script>
 

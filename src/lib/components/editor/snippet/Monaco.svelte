@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { BUFFER } from "$lib/modules/buffer/buffer";
-
+	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import { SETTINGS } from "$lib/modules/settings/settings";
-	import { Storage } from "$lib/modules/storage/storage";
-
 	import type { Note, Snippet } from "$lib/modules/types";
 	import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 	import { onDestroy, onMount } from "svelte";
@@ -49,7 +47,7 @@
 			snippet.content = editor.getModel().getValue();
 			length = snippet.content.length;
 			if ($SETTINGS.autoSave) {
-				const save = async (buffer: Note) => Storage.writeNote(buffer);
+				const save = async (buffer: Note) => FILESYSTEM.write(buffer);
 				save($BUFFER);
 			}
 		});

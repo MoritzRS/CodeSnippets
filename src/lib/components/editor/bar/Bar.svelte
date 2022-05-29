@@ -1,10 +1,10 @@
 <script lang="ts">
 	import CheckIcon from "$lib/icons/CheckIcon.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
-	import { Storage } from "$lib/modules/storage/storage";
+	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 
 	function save() {
-		Storage.writeNote($BUFFER);
+		FILESYSTEM.write($BUFFER);
 	}
 
 	function close() {

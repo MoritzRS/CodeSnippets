@@ -1,8 +1,8 @@
 <script lang="ts">
 	import PlusCircleIcon from "$lib/icons/PlusCircleIcon.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
+	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import { SETTINGS } from "$lib/modules/settings/settings";
-	import { Storage } from "$lib/modules/storage/storage";
 	import Bar from "./bar/Bar.svelte";
 	import Snippet from "./snippet/Snippet.svelte";
 
@@ -16,7 +16,7 @@
 			};
 			return { ...buffer, snippets: [...buffer.snippets, snippet] };
 		});
-		if ($SETTINGS.autoSave) Storage.writeNote($BUFFER);
+		if ($SETTINGS.autoSave) FILESYSTEM.write($BUFFER);
 	}
 </script>
 

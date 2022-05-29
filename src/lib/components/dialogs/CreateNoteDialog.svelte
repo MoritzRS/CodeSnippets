@@ -2,15 +2,14 @@
 	import { BUFFER } from "$lib/modules/buffer/buffer";
 
 	import { DIALOG } from "$lib/modules/dialogs/dialog";
-	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
-	import { Storage } from "$lib/modules/storage/storage";
+	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import type { Note } from "$lib/modules/types";
 	import Dialog from "./Dialog.svelte";
 
 	let name = "";
 
 	function check(name: string) {
-		return Storage.hasNote(name) || !name;
+		return FILESYSTEM.exists(name);
 	}
 
 	function create() {
@@ -25,8 +24,7 @@
 				}
 			]
 		};
-		Storage.writeNote(note);
-		refreshFileTree();
+		FILESYSTEM.write(note);
 		BUFFER.set(note);
 		name = "";
 		DIALOG.toggleCreate();

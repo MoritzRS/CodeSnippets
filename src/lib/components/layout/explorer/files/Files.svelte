@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { FILE_TREE, refreshFileTree } from "$lib/modules/filetree/fileTree";
+	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import { onMount } from "svelte";
 	import CreateButton from "./CreateButton.svelte";
 	import Empty from "./Empty.svelte";
@@ -7,7 +7,7 @@
 	import RefreshButton from "./RefreshButton.svelte";
 
 	onMount(() => {
-		refreshFileTree();
+		FILESYSTEM.scan();
 	});
 </script>
 
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<div class="flex flex-col overflow-y-auto min-h-full">
-		{#each $FILE_TREE as note}
+		{#each $FILESYSTEM as note}
 			<Entry {note} />
 		{:else}
 			<Empty />

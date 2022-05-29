@@ -2,9 +2,8 @@
 	import RefreshIcon from "$lib/icons/RefreshIcon.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { DIALOG } from "$lib/modules/dialogs/dialog";
-	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
+	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import { SETTINGS } from "$lib/modules/settings/settings";
-	import { Storage } from "$lib/modules/storage/storage";
 	import Dialog from "./Dialog.svelte";
 
 	let filename = "CodeSnippetsExport.json";
@@ -21,9 +20,8 @@
 				let note = file.notes[i];
 				if (!note.title || !note.snippets) continue;
 
-				Storage.writeNote(note);
+				FILESYSTEM.write(note);
 			}
-			refreshFileTree();
 		}
 
 		BUFFER.clear();
@@ -33,7 +31,7 @@
 	function exportData() {
 		const data = {
 			settings: $SETTINGS,
-			notes: Storage.getNotes()
+			notes: $FILESYSTEM
 		};
 		const element = document.createElement("a");
 		element.setAttribute(
@@ -52,9 +50,8 @@
 
 	function resetData() {
 		SETTINGS.reset();
-		Storage.getNotes().forEach((note) => Storage.deleteNote(note.title));
+		FILESYSTEM.clear();
 		BUFFER.clear();
-		refreshFileTree();
 	}
 </script>
 
