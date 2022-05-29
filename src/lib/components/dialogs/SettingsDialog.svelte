@@ -1,19 +1,7 @@
 <script lang="ts">
 	import { DIALOG } from "$lib/modules/dialogs/dialog";
-	import { SettingManager, SETTINGS } from "$lib/modules/settings/settings";
-	import { onMount } from "svelte";
+	import { SETTINGS } from "$lib/modules/settings/settings";
 	import Dialog from "./Dialog.svelte";
-
-	onMount(() => {
-		return SETTINGS.subscribe(async () => {
-			SettingManager.saveSettings();
-		});
-	});
-
-	function reset() {
-		SettingManager.resetSettings();
-		SettingManager.saveSettings();
-	}
 </script>
 
 <template>
@@ -64,7 +52,7 @@
 		</table>
 
 		<div class="flex justify-end gap-3">
-			<button type="button" class="btn btn-ghost" on:click={reset}>Reset</button>
+			<button type="button" class="btn btn-ghost" on:click={SETTINGS.reset}>Reset</button>
 		</div>
 	</Dialog>
 </template>

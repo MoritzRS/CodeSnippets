@@ -3,7 +3,7 @@
 	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { DIALOG } from "$lib/modules/dialogs/dialog";
 	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
-	import { SettingManager, SETTINGS } from "$lib/modules/settings/settings";
+	import { SETTINGS } from "$lib/modules/settings/settings";
 	import { Storage } from "$lib/modules/storage/storage";
 	import Dialog from "./Dialog.svelte";
 
@@ -13,8 +13,7 @@
 	async function importData() {
 		const file = JSON.parse(await files[0].text());
 		if (file.settings) {
-			$SETTINGS = file.settings;
-			SettingManager.saveSettings();
+			SETTINGS.set(file.settings);
 		}
 
 		if (file.notes && file.notes.length) {
@@ -52,9 +51,7 @@
 	}
 
 	function resetData() {
-		SettingManager.resetSettings();
-		SettingManager.saveSettings();
-
+		SETTINGS.reset();
 		Storage.getNotes().forEach((note) => Storage.deleteNote(note.title));
 		BUFFER.clear();
 		refreshFileTree();

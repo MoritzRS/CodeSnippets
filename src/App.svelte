@@ -7,11 +7,11 @@
 	import Layout from "$lib/components/layout/Layout.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { DIALOG, DialogStates } from "$lib/modules/dialogs/dialog";
-	import { SettingManager } from "$lib/modules/settings/settings";
+	import { SETTINGS } from "$lib/modules/settings/settings";
 	import { onMount } from "svelte";
 
 	onMount(() => {
-		SettingManager.loadSettings();
+		SETTINGS.load();
 	});
 </script>
 

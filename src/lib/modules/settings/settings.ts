@@ -1,4 +1,4 @@
-import { get, writable } from "svelte/store";
+import { writable, get } from "svelte/store";
 import type { Settings } from "../types";
 
 /**
@@ -16,39 +16,30 @@ const defaultSettings: Settings = {
 	autoSave: true
 };
 
-/**
- * Contains the current Settings object
- */
-export const SETTINGS = writable<Settings>(defaultSettings);
+export const SETTINGS = (function () {
+	const { subscribe, set, update } = writable<Settings>(defaultSettings);
 
-/**
- * Reset settings to defaults
- */
-function resetSettings() {
-	SETTINGS.set({ ...defaultSettings });
-}
+	const saveSet = (value: Settings) => {
+		set(value);
+		localStorage.setItem(SETTING_KEY, JSON.stringify(value));
+	};
 
-/**
- * Load settings from storage
- */
-function loadSettings() {
-	SETTINGS.set({ ...defaultSettings, ...JSON.parse(localStorage.getItem(SETTING_KEY)) });
-}
+	const saveUpdate = (update: (state: Settings) => Settings) => {
+		saveSet(update(get(SETTINGS)));
+	};
 
-function saveSettings() {
-	localStorage.setItem(SETTING_KEY, JSON.stringify(get(SETTINGS)));
-}
+	const reset = () => saveSet({ ...defaultSettings });
 
-/**
- * Switch between light and dark mode
- */
-function toggleDarkMode() {
-	SETTINGS.update((settings) => ({ ...settings, darkMode: !settings.darkMode }));
-}
+	const load = () => saveSet({ ...defaultSettings, ...JSON.parse(localStorage.getItem(SETTING_KEY)) });
 
-export const SettingManager = {
-	resetSettings,
-	loadSettings,
-	saveSettings,
-	toggleDarkMode
-};
+	const toggleDarkMode = () => saveUpdate((state) => ({ ...state, darkMode: !state.darkMode }));
+
+	return {
+		subscribe,
+		set: saveSet,
+		update: saveUpdate,
+		reset,
+		load,
+		toggleDarkMode
+	};
+})();
