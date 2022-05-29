@@ -1,25 +1,30 @@
 import { writable } from "svelte/store";
 
-export const DIALOG_CREATE = writable(false);
-
-function toggleDialogCreate() {
-	DIALOG_CREATE.update((state) => !state);
+export enum DialogStates {
+	None,
+	Settings,
+	ImportExport,
+	Create
 }
 
-export const DIALOG_SETTINGS = writable(false);
+export const DIALOG = (function () {
+	const { subscribe, set, update } = writable<DialogStates>(DialogStates.None);
 
-function toggleDialogSettings() {
-	DIALOG_SETTINGS.update((state) => !state);
-}
+	const toggleCreate = () =>
+		update((state) => (state == DialogStates.Create ? DialogStates.None : DialogStates.Create));
 
-export const DIALOG_IMPORT_EXPORT = writable(false);
+	const toggleSettings = () =>
+		update((state) => (state == DialogStates.Settings ? DialogStates.None : DialogStates.Settings));
 
-function toggleImportExportDialog() {
-	DIALOG_IMPORT_EXPORT.update((state) => !state);
-}
+	const toggleImportExport = () =>
+		update((state) => (state == DialogStates.ImportExport ? DialogStates.None : DialogStates.ImportExport));
 
-export const DialogManager = {
-	toggleDialogCreate,
-	toggleDialogSettings,
-	toggleImportExportDialog
-};
+	return {
+		subscribe,
+		set,
+		update,
+		toggleCreate,
+		toggleSettings,
+		toggleImportExport
+	};
+})();

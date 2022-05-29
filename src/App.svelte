@@ -6,6 +6,7 @@
 	import HelloWorld from "$lib/components/helloworld/HelloWorld.svelte";
 	import Layout from "$lib/components/layout/Layout.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
+	import { DIALOG, DialogStates } from "$lib/modules/dialogs/dialog";
 	import { SettingManager } from "$lib/modules/settings/settings";
 	import { onMount } from "svelte";
 
@@ -26,9 +27,13 @@
 		</svelte:fragment>
 
 		<svelte:fragment slot="dialogs">
-			<CreateNoteDialog />
-			<SettingsDialog />
-			<ImportExportDialog />
+			{#if $DIALOG == DialogStates.Create}
+				<CreateNoteDialog />
+			{:else if $DIALOG == DialogStates.Settings}
+				<SettingsDialog />
+			{:else if $DIALOG == DialogStates.ImportExport}
+				<ImportExportDialog />
+			{/if}
 		</svelte:fragment>
 	</Layout>
 </template>

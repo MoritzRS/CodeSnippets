@@ -1,7 +1,7 @@
 <script lang="ts">
 	import RefreshIcon from "$lib/icons/RefreshIcon.svelte";
 	import { clearBuffer } from "$lib/modules/buffer/buffer";
-	import { DialogManager, DIALOG_IMPORT_EXPORT } from "$lib/modules/dialogs/dialog";
+	import { DIALOG } from "$lib/modules/dialogs/dialog";
 	import { refreshFileTree } from "$lib/modules/filetree/fileTree";
 	import { SettingManager, SETTINGS } from "$lib/modules/settings/settings";
 	import { Storage } from "$lib/modules/storage/storage";
@@ -28,7 +28,7 @@
 		}
 
 		clearBuffer();
-		DialogManager.toggleImportExportDialog();
+		DIALOG.toggleImportExport();
 	}
 
 	function exportData() {
@@ -48,7 +48,7 @@
 		element.click();
 		document.body.removeChild(element);
 
-		DialogManager.toggleImportExportDialog();
+		DIALOG.toggleImportExport();
 	}
 
 	function resetData() {
@@ -62,35 +62,33 @@
 </script>
 
 <template>
-	{#if $DIALOG_IMPORT_EXPORT}
-		<Dialog toggle={DialogManager.toggleImportExportDialog}>
-			<h1 class="text-4xl font-bold pb-4">Import / Export</h1>
+	<Dialog toggle={DIALOG.toggleImportExport}>
+		<h1 class="text-4xl font-bold pb-4">Import / Export</h1>
 
-			<div class="input-group w-full">
-				<label class="flex-1">
-					<span class="btn btn-outline">Upload Import File</span>
-					<input type="file" accept="application/json" class="hidden" bind:files />
-				</label>
-				<button type="button" class="btn" disabled={!files?.length} on:click={importData}>Import</button>
-			</div>
+		<div class="input-group w-full">
+			<label class="flex-1">
+				<span class="btn btn-outline">Upload Import File</span>
+				<input type="file" accept="application/json" class="hidden" bind:files />
+			</label>
+			<button type="button" class="btn" disabled={!files?.length} on:click={importData}>Import</button>
+		</div>
 
-			<div class="divider" />
+		<div class="divider" />
 
-			<div class="input-group w-full">
-				<input type="text" class="input input-bordered" bind:value={filename} />
-				<button type="button" class="btn" on:click={exportData}>Export</button>
-			</div>
+		<div class="input-group w-full">
+			<input type="text" class="input input-bordered" bind:value={filename} />
+			<button type="button" class="btn" on:click={exportData}>Export</button>
+		</div>
 
-			<div class="divider" />
+		<div class="divider" />
 
-			<div class="flex justify-end">
-				<button type="button" class="btn gap-1" on:click={resetData}>
-					<RefreshIcon size={16} />
-					<span>Reset Storage</span>
-				</button>
-			</div>
-		</Dialog>
-	{/if}
+		<div class="flex justify-end">
+			<button type="button" class="btn gap-1" on:click={resetData}>
+				<RefreshIcon size={16} />
+				<span>Reset Storage</span>
+			</button>
+		</div>
+	</Dialog>
 </template>
 
 <style lang="scss">

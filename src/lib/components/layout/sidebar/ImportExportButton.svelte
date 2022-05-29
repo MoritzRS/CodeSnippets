@@ -1,6 +1,6 @@
 <script lang="ts">
 	import DatabaseIcon from "$lib/icons/DatabaseIcon.svelte";
-	import { DialogManager } from "$lib/modules/dialogs/dialog";
+	import { DIALOG } from "$lib/modules/dialogs/dialog";
 </script>
 
 <template>
@@ -9,7 +9,7 @@
 			type="button"
 			class="btn btn-ghost w-full h-full"
 			title="Import/Export"
-			on:click={DialogManager.toggleImportExportDialog}
+			on:click={DIALOG.toggleImportExport}
 		>
 			<DatabaseIcon size={48} />
 		</button>

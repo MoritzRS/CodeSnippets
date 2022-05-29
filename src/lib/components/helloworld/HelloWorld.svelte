@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DialogManager } from "$lib/modules/dialogs/dialog";
+	import { DIALOG } from "$lib/modules/dialogs/dialog";
 </script>
 
 <template>
@@ -11,25 +11,17 @@
 				<div class="divider">By Moritz R. S. and Lucas H.</div>
 
 				<div class="flex flex-wrap justify-between">
-					<button
-						type="button"
-						class="btn btn-sm btn-outline btn-primary"
-						on:click={DialogManager.toggleDialogCreate}
-					>
+					<button type="button" class="btn btn-sm btn-outline btn-primary" on:click={DIALOG.toggleCreate}>
 						<span>Create Note</span>
 					</button>
 					<button
 						type="button"
 						class="btn btn-sm btn-outline btn-secondary"
-						on:click={DialogManager.toggleImportExportDialog}
+						on:click={DIALOG.toggleImportExport}
 					>
 						<span>Import Data</span>
 					</button>
-					<button
-						type="button"
-						class="btn btn-sm btn-outline btn-accent"
-						on:click={DialogManager.toggleDialogSettings}
-					>
+					<button type="button" class="btn btn-sm btn-outline btn-accent" on:click={DIALOG.toggleSettings}>
 						<span>Settings</span>
 					</button>
 				</div>

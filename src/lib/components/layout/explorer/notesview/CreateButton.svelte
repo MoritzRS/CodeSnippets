@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PlusCircleIcon from "$lib/icons/PlusCircleIcon.svelte";
-	import { DialogManager } from "$lib/modules/dialogs/dialog";
+	import { DIALOG } from "$lib/modules/dialogs/dialog";
 </script>
 
 <template>
@@ -8,7 +8,7 @@
 		type="button"
 		class="btn btn-sm btn-ghost btn-square"
 		title="Create new File"
-		on:click={DialogManager.toggleDialogCreate}
+		on:click={DIALOG.toggleCreate}
 	>
 		<PlusCircleIcon size={24} />
 	</button>
