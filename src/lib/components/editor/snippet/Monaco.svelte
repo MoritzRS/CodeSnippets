@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
+	import { RESIZE_OBSERVER } from "$lib/modules/resizeobserver/resizeObserver";
 	import { SETTINGS } from "$lib/modules/settings/settings";
 	import type { Note, Snippet } from "$lib/modules/types";
 	import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
@@ -32,7 +33,6 @@
 	onMount(() => {
 		editor = monaco.editor.create(container, {
 			theme: "vs-dark",
-			automaticLayout: true,
 			scrollBeyondLastLine: false,
 			fontSize: 16,
 			minimap: {
@@ -60,6 +60,14 @@
 			run: function () {
 				editor.trigger(null, "editor.action.quickCommand", null);
 			}
+		});
+
+		return RESIZE_OBSERVER.subscribe(() => {
+			if (editor) {
+				editor.layout({ width: 0, height: 0 });
+				editor.layout();
+			}
+			console.log("triggered");
 		});
 	});
 

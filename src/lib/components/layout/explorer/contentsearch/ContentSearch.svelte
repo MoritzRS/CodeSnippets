@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
+	import { RESIZE_OBSERVER } from "$lib/modules/resizeobserver/resizeObserver";
 	import type { Note } from "$lib/modules/types";
+	import { onDestroy, onMount } from "svelte";
 	import ResultEntry from "./ResultEntry.svelte";
 
 	let searchString = "";
@@ -10,6 +12,14 @@
 	function search() {
 		results = FILESYSTEM.findContent(searchString, false);
 	}
+
+	onMount(() => {
+		RESIZE_OBSERVER.trigger();
+	});
+
+	onDestroy(() => {
+		RESIZE_OBSERVER.trigger();
+	});
 </script>
 
 <template>
