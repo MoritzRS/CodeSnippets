@@ -17,7 +17,7 @@ const defaultSettings: Settings = {
 };
 
 export const SETTINGS = (function () {
-	const { subscribe, set, update } = writable<Settings>(defaultSettings);
+	const { subscribe, set } = writable<Settings>(defaultSettings);
 
 	const saveSet = (value: Settings) => {
 		set(value);
