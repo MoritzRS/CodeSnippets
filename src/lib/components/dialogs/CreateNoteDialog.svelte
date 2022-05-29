@@ -18,8 +18,8 @@
 			snippets: [
 				{
 					id: 0,
-					title: "Sample",
-					language: "javascript",
+					title: "main.ts",
+					language: "typescript",
 					content: 'console.log("Test");'
 				}
 			]

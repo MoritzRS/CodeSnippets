@@ -67,7 +67,6 @@
 				editor.layout({ width: 0, height: 0 });
 				editor.layout();
 			}
-			console.log("triggered");
 		});
 	});
 
