@@ -3,7 +3,7 @@
 	import { onMount } from "svelte";
 	import CreateButton from "./CreateButton.svelte";
 	import Empty from "./Empty.svelte";
-	import NoteEntry from "./NoteEntry.svelte";
+	import Entry from "./Entry.svelte";
 	import RefreshButton from "./RefreshButton.svelte";
 
 	onMount(() => {
@@ -21,7 +21,7 @@
 	</div>
 	<div class="flex flex-col overflow-y-auto min-h-full">
 		{#each $FILE_TREE as note}
-			<NoteEntry {note} />
+			<Entry {note} />
 		{:else}
 			<Empty />
 		{/each}

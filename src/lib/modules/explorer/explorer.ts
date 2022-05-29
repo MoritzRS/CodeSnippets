@@ -2,33 +2,31 @@ import { writable } from "svelte/store";
 
 export enum ExplorerStates {
 	Closed,
-	NotesView,
-	NoteSearch,
-	SnippetSearch
+	Files,
+	FileSearch,
+	ContentSearch
 }
 
-export const EXPLORER_STATE = writable<ExplorerStates>(ExplorerStates.NotesView);
+export const EXPLORER = (function () {
+	const { subscribe, set, update } = writable<ExplorerStates>(ExplorerStates.Files);
 
-function toggleNoteView() {
-	EXPLORER_STATE.update((state) =>
-		state == ExplorerStates.NotesView ? ExplorerStates.Closed : ExplorerStates.NotesView
-	);
-}
+	const toggleFiles = () =>
+		update((state) => (state == ExplorerStates.Files ? ExplorerStates.Closed : ExplorerStates.Files));
 
-function toggleNoteSearch() {
-	EXPLORER_STATE.update((state) =>
-		state == ExplorerStates.NoteSearch ? ExplorerStates.Closed : ExplorerStates.NoteSearch
-	);
-}
+	const toggleFileSearch = () =>
+		update((state) => (state == ExplorerStates.FileSearch ? ExplorerStates.Closed : ExplorerStates.FileSearch));
 
-function toggleSnippetSearch() {
-	EXPLORER_STATE.update((state) =>
-		state == ExplorerStates.SnippetSearch ? ExplorerStates.Closed : ExplorerStates.SnippetSearch
-	);
-}
+	const toggleContentSearch = () =>
+		update((state) =>
+			state == ExplorerStates.ContentSearch ? ExplorerStates.Closed : ExplorerStates.ContentSearch
+		);
 
-export const ExplorerStateManager = {
-	toggleNoteView,
-	toggleNoteSearch,
-	toggleSnippetSearch
-};
+	return {
+		subscribe,
+		set,
+		update,
+		toggleFiles,
+		toggleFileSearch,
+		toggleContentSearch
+	};
+})();

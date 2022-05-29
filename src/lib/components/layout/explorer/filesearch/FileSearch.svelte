@@ -9,13 +9,13 @@
 	let results: Note[] = [];
 
 	function search() {
-		results = Storage.findSnippets(searchString, false);
+		results = Storage.findNotes(searchString, false);
 	}
 </script>
 
 <template>
 	<div class="flex flex-row flex-wrap gap-3 justify-between p-3">
-		<span class="text-lg font-bold">Snippet Search</span>
+		<span class="text-lg font-bold">File Search</span>
 	</div>
 	<div class="flex flex-col gap-3">
 		<form class="input-group justify-center items-center">

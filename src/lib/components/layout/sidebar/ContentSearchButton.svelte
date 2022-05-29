@@ -1,6 +1,6 @@
 <script lang="ts">
 	import SearchIcon from "$lib/icons/SearchIcon.svelte";
-	import { ExplorerStateManager, ExplorerStates, EXPLORER_STATE } from "$lib/modules//explorer/explorer";
+	import { ExplorerStates, EXPLORER } from "$lib/modules/explorer/explorer";
 </script>
 
 <template>
@@ -8,9 +8,9 @@
 		<button
 			type="button"
 			class="btn btn-ghost w-full h-full"
-			class:btn-active={$EXPLORER_STATE == ExplorerStates.SnippetSearch}
-			title="Snippet Search"
-			on:click={ExplorerStateManager.toggleSnippetSearch}
+			class:btn-active={$EXPLORER == ExplorerStates.ContentSearch}
+			title="Content Search"
+			on:click={EXPLORER.toggleContentSearch}
 		>
 			<SearchIcon size={32} />
 		</button>
