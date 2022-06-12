@@ -25,12 +25,14 @@
 			<CreateButton />
 		</div>
 	</div>
-	<div class="flex flex-col overflow-y-auto min-h-full">
-		{#each $FILESYSTEM as note}
-			<Entry {note} />
-		{:else}
-			<Empty />
-		{/each}
+	<div class="overflow-y-auto">
+		<div class="flex flex-col">
+			{#each $FILESYSTEM as note}
+				<Entry {note} />
+			{:else}
+				<Empty />
+			{/each}
+		</div>
 	</div>
 </template>
 

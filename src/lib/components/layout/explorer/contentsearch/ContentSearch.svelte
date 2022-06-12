@@ -35,10 +35,12 @@
 
 	<div class="divider">Results</div>
 
-	<div class="flex flex-col overflow-y-auto min-h-full">
-		{#each results as note}
-			<ResultEntry {note} />
-		{/each}
+	<div class="overflow-y-auto">
+		<div class="flex flex-col">
+			{#each results as note}
+				<ResultEntry {note} />
+			{/each}
+		</div>
 	</div>
 </template>
 

@@ -5,7 +5,16 @@
 	import Monaco from "./Monaco.svelte";
 
 	export let snippet: Snippet;
+
 	let length = 0;
+	let lineNumber = 0;
+	let column = 0;
+
+	function printSize(size: number) {
+		if (size > 100000) return parseFloat((size / 1000000).toFixed(2)) + " MiB";
+		if (size > 100) return parseFloat((size / 1000).toFixed(2)) + " KiB";
+		return size + " Byte";
+	}
 </script>
 
 <template>
@@ -16,9 +25,13 @@
 				<DeleteButton id={snippet.id} />
 			</span>
 		</div>
-		<Monaco {snippet} bind:length />
-		<div class="w-full flex flex-row justify-between items-center p-1">
-			<span class="badge" title="Characters">{length}</span>
+		<Monaco {snippet} bind:length bind:lineNumber bind:column />
+		<div class="w-full flex flex-row justify-between items-center p-2">
+			<span class="badge badge-outline text-xs" title="Position">
+				<span>{printSize(length)}</span>
+				<span class="px-1">|</span>
+				<span>Ln {lineNumber}, Col {column}</span>
+			</span>
 			<LanguageSelector bind:language={snippet.language} />
 		</div>
 	</div>

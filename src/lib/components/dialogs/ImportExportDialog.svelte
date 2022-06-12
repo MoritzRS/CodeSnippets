@@ -49,6 +49,7 @@
 	}
 
 	function resetData() {
+		localStorage.clear();
 		SETTINGS.reset();
 		FILESYSTEM.clear();
 		BUFFER.clear();

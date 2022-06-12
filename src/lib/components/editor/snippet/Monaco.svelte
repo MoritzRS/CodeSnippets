@@ -8,7 +8,11 @@
 	import { onDestroy, onMount } from "svelte";
 
 	export let snippet: Snippet;
+
 	export let length = 0;
+	export let lineNumber = 0;
+	export let column = 0;
+
 	let container: HTMLElement;
 	let editor: monaco.editor.IStandaloneCodeEditor;
 
@@ -44,12 +48,20 @@
 		length = snippet.content.length;
 
 		editor.getModel().onDidChangeContent(() => {
-			snippet.content = editor.getModel().getValue();
-			length = snippet.content.length;
+			const model = editor.getModel();
+			snippet.content = model.getValue();
+			length = model.getValueLength();
+
 			if ($SETTINGS.autoSave) {
 				const save = async (buffer: Note) => FILESYSTEM.write(buffer);
 				save($BUFFER);
 			}
+		});
+
+		editor.onDidChangeCursorPosition(() => {
+			const position = editor.getPosition();
+			lineNumber = position.lineNumber;
+			column = position.column;
 		});
 
 		// add custom commandline shortcut

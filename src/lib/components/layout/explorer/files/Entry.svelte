@@ -24,7 +24,7 @@
 		on:click|self={open}
 	>
 		<span>{note.title}</span>
-		<button type="button" class="btn btn-sm btn-square btn-ghost" on:click={remove}>
+		<button type="button" class="btn btn-sm btn-square btn-ghost" title="Remove File" on:click={remove}>
 			<TrashIcon size={16} />
 		</button>
 	</button>

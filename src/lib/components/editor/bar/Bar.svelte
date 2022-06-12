@@ -18,10 +18,10 @@
 		<span>{$BUFFER.title}</span>
 
 		<span class="flex gap-3">
-			<button type="button" class="btn btn-xs btn-circle btn-secondary" title="Close File" on:click={close}>
+			<button type="button" class="btn btn-sm btn-square btn-secondary" title="Close File" on:click={close}>
 				<XIcon />
 			</button>
-			<button type="button" class="btn btn-xs btn-circle btn-primary" title="Save Changes" on:click={save}>
+			<button type="button" class="btn btn-sm btn-square btn-primary" title="Save Changes" on:click={save}>
 				<CheckIcon />
 			</button>
 		</span>
