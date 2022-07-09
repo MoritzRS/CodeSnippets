@@ -19,6 +19,7 @@ jobs:
     - name: Deploy to Serer
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
+        dangerous-clean-slate: true
         local-dir: ./dist/
         server: ${{ secrets.DEPLOY_SERVER}}
         username: ${{ secrets.DEPLOY_USER}}
