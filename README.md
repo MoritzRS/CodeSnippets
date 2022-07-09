@@ -14,5 +14,5 @@
 -   [ ] Refactoring
 -   [ ] UI Fixes
 -   [ ] Service Worker / PWA
--   [ ] Multi Theme Support (optional)
+-   [x] Multi Theme Support
 -   [ ] Cleanup
