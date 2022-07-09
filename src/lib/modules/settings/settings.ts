@@ -10,7 +10,9 @@ const SETTING_KEY = "settings";
  * default settings
  */
 const defaultSettings: Settings = {
-	darkMode: true,
+	lightTheme: "light",
+	darkTheme: "dark",
+	theme: "auto",
 	minimap: false,
 	fontSize: 16,
 	autoSave: true
@@ -32,7 +34,16 @@ export const SETTINGS = (function () {
 
 	const load = () => saveSet({ ...defaultSettings, ...JSON.parse(localStorage.getItem(SETTING_KEY)) });
 
-	const toggleDarkMode = () => saveUpdate((state) => ({ ...state, darkMode: !state.darkMode }));
+	const toggleDarkMode = () =>
+		saveUpdate((state) => {
+			console.log(state.theme);
+			let theme: typeof state.theme;
+			if (state.theme == "auto") theme = "dark";
+			else if (state.theme == "dark") theme = "light";
+			else theme = "auto";
+
+			return { ...state, theme: theme };
+		});
 
 	return {
 		subscribe,

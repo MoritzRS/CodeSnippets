@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
-	import { RESIZE_OBSERVER } from "$lib/modules/resizeobserver/resizeObserver";
 	import { SETTINGS } from "$lib/modules/settings/settings";
 	import type { Note, Snippet } from "$lib/modules/types";
+	import { WINDOW } from "$lib/modules/window/window";
 	import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 	import { onDestroy, onMount } from "svelte";
 
@@ -18,7 +18,9 @@
 
 	// dynamic theme update
 	$: {
-		monaco.editor.setTheme($SETTINGS.darkMode ? "vs-dark" : "vs");
+		monaco.editor.setTheme(
+			$SETTINGS.theme == "dark" || ($SETTINGS.theme == "auto" && $WINDOW.prefersDarkMode) ? "vs-dark" : "vs"
+		);
 	}
 
 	// dynamic language update
@@ -74,7 +76,7 @@
 			}
 		});
 
-		return RESIZE_OBSERVER.subscribe(() => {
+		return WINDOW.subscribe(() => {
 			if (editor) {
 				editor.layout({ width: 0, height: 0 });
 				editor.layout();

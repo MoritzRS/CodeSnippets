@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
-	import { RESIZE_OBSERVER } from "$lib/modules/resizeobserver/resizeObserver";
+	import { WINDOW } from "$lib/modules/window/window";
 	import { onDestroy, onMount } from "svelte";
 	import CreateButton from "./CreateButton.svelte";
 	import Empty from "./Empty.svelte";
@@ -9,11 +9,11 @@
 
 	onMount(() => {
 		FILESYSTEM.scan();
-		RESIZE_OBSERVER.trigger();
+		WINDOW.update();
 	});
 
 	onDestroy(() => {
-		RESIZE_OBSERVER.trigger();
+		WINDOW.update();
 	});
 </script>
 

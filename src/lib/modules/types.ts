@@ -1,3 +1,5 @@
+import type { darkThemes, lightThemes } from "./themes";
+
 export type Snippet = {
 	id: number;
 	title: string;
@@ -11,8 +13,16 @@ export type Note = {
 };
 
 export type Settings = {
-	darkMode: boolean;
+	lightTheme: typeof lightThemes[number];
+	darkTheme: typeof darkThemes[number];
+	theme: "auto" | "light" | "dark";
 	minimap: boolean;
 	fontSize: number;
 	autoSave: boolean;
+};
+
+export type Window = {
+	width: number;
+	height: number;
+	prefersDarkMode: boolean;
 };
