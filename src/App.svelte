@@ -7,7 +7,6 @@
 	import Layout from "$lib/components/layout/Layout.svelte";
 	import { BUFFER } from "$lib/modules/buffer/buffer";
 	import { DIALOG, DialogStates } from "$lib/modules/dialogs/dialog";
-	import { RESIZE_OBSERVER } from "$lib/modules/resizeobserver/resizeObserver";
 	import { SETTINGS } from "$lib/modules/settings/settings";
 	import { onMount } from "svelte";
 
@@ -15,8 +14,6 @@
 		SETTINGS.load();
 	});
 </script>
-
-<svelte:window on:resize={RESIZE_OBSERVER.trigger} />
 
 <template>
 	<!-- Base Layout -->

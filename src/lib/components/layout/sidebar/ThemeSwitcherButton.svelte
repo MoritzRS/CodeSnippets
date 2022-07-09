@@ -8,14 +8,16 @@
 	<div class="w-14 h-14 p-2">
 		<button
 			type="button"
-			class="btn btn-xs {$SETTINGS.darkMode ? 'btn-accent' : 'btn-ghost'} w-full h-full"
+			class="btn btn-xs {$SETTINGS.theme == 'auto' ? 'btn-ghost' : 'btn-accent'} w-full h-full"
 			title="Toggle Color Theme"
 			on:click={SETTINGS.toggleDarkMode}
 		>
-			{#if $SETTINGS.darkMode}
+			{#if $SETTINGS.theme == "dark"}
 				<MoonIcon size={24} />
-			{:else}
+			{:else if $SETTINGS.theme == "light"}
 				<SunIcon size={24} />
+			{:else if $SETTINGS.theme == "auto"}
+				<span class="text-xl">A</span>
 			{/if}
 		</button>
 	</div>

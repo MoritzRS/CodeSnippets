@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { DIALOG } from "$lib/modules/dialogs/dialog";
 	import { SETTINGS } from "$lib/modules/settings/settings";
+	import { darkThemes, lightThemes } from "$lib/modules/themes";
 	import Dialog from "./Dialog.svelte";
 </script>
 
@@ -19,9 +20,35 @@
 			<tbody>
 				<tr>
 					<td />
-					<th>Dark Mode</th>
+					<th>Theming</th>
 					<td>
-						<input type="checkbox" class="toggle toggle-primary" bind:checked={$SETTINGS.darkMode} />
+						<select class="select select-bordered w-full" bind:value={$SETTINGS.theme}>
+							<option value="auto">System</option>
+							<option value="light">Light</option>
+							<option value="dark">Dark</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td />
+					<th>Light Theme</th>
+					<td>
+						<select class="select select-bordered w-full" bind:value={$SETTINGS.lightTheme}>
+							{#each lightThemes as theme}
+								<option value={theme}>{theme}</option>
+							{/each}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td />
+					<th>Dark Theme</th>
+					<td>
+						<select class="select select-bordered w-full" bind:value={$SETTINGS.darkTheme}>
+							{#each darkThemes as theme}
+								<option value={theme}>{theme}</option>
+							{/each}
+						</select>
 					</td>
 				</tr>
 
