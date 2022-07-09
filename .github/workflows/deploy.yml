@@ -1,0 +1,25 @@
+name: Deploy Site
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get the latest code
+      uses: actions/checkout@v3
+    - uses: actions/setup-node@3
+    - name: Installing project dependencies
+      run: npm install
+    - name: Building the project
+      run: npm run build
+    - name: Deploy to Serer
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        local-dir: ./dist/
+        server: ${{ secrets.DEPLOY_SERVER}}
+        username: ${{ secrets.DEPLOY_USER}}
+        password: ${{ secrets.DEPLOY_PASSWD}}
