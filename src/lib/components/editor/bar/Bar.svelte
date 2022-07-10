@@ -14,17 +14,17 @@
 	});
 
 	function save() {
-		FILESYSTEM.write($BUFFER);
+		FILESYSTEM.write($BUFFER, false);
 	}
 
 	function close() {
 		BUFFER.clear();
 	}
 
-	function rename() {
-		FILESYSTEM.remove($BUFFER);
+	async function rename() {
+		await FILESYSTEM.remove($BUFFER);
 		$BUFFER.title = title;
-		FILESYSTEM.write($BUFFER);
+		await FILESYSTEM.write($BUFFER);
 	}
 </script>
 

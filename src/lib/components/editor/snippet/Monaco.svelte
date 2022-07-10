@@ -56,8 +56,7 @@
 			length = model.getValueLength();
 
 			if ($SETTINGS.autoSave) {
-				const save = async (buffer: Note) => FILESYSTEM.write(buffer);
-				save($BUFFER);
+				FILESYSTEM.write($BUFFER, false);
 			}
 		});
 

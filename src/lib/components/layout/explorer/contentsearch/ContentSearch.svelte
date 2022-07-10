@@ -9,8 +9,8 @@
 
 	let results: Note[] = [];
 
-	function search() {
-		results = FILESYSTEM.findContent(searchString, false);
+	async function search() {
+		results = await FILESYSTEM.findContent(searchString, false);
 	}
 
 	onMount(() => {
