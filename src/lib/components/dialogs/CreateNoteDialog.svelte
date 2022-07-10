@@ -9,7 +9,8 @@
 	let valid = false;
 
 	async function check() {
-		valid = !(await FILESYSTEM.exists(name)) || !!name;
+		if (!name) valid = false;
+		else valid = !(await FILESYSTEM.exists(name));
 	}
 
 	function create() {
