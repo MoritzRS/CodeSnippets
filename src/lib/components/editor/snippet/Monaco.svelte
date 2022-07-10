@@ -18,9 +18,10 @@
 
 	// dynamic theme update
 	$: {
-		monaco.editor.setTheme(
-			$SETTINGS.theme == "dark" || ($SETTINGS.theme == "auto" && $WINDOW.prefersDarkMode) ? "vs-dark" : "vs"
-		);
+		if (editor)
+			monaco.editor.setTheme(
+				$SETTINGS.theme == "dark" || ($SETTINGS.theme == "auto" && $WINDOW.prefersDarkMode) ? "vs-dark" : "vs"
+			);
 	}
 
 	// dynamic language update
