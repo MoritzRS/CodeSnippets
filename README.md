@@ -13,6 +13,6 @@
 
 -   [ ] Refactoring
 -   [ ] UI Fixes
--   [ ] Service Worker / PWA
+-   [x] Service Worker / PWA
 -   [x] Multi Theme Support
 -   [ ] Cleanup
