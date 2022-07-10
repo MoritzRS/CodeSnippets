@@ -4,10 +4,21 @@
 	import { DIALOG } from "$lib/modules/dialogs/dialog";
 	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import { SETTINGS } from "$lib/modules/settings/settings";
+	import { onMount } from "svelte";
 	import Dialog from "./Dialog.svelte";
 
 	let filename = "CodeSnippetsExport.json";
 	let files: FileList;
+
+	$: fileCount = ((cnt: number) => {
+		if (cnt == 1) return cnt + " File";
+		return cnt + " Files";
+	})($FILESYSTEM.length);
+
+	$: storageCount = ((size: number) => {
+		if (size < 100000) return parseFloat((size / 1000).toFixed(1)) + " KB";
+		return parseFloat((size / 1000000).toFixed(1)) + "MB";
+	})(JSON.stringify($FILESYSTEM).length);
 
 	async function importData() {
 		const file = JSON.parse(await files[0].text());
@@ -54,11 +65,30 @@
 		FILESYSTEM.clear();
 		BUFFER.clear();
 	}
+
+	onMount(() => {
+		FILESYSTEM.scan();
+	});
 </script>
 
 <template>
 	<Dialog toggle={DIALOG.toggleImportExport}>
 		<h1 class="text-4xl font-bold pb-4">Import / Export</h1>
+
+		<div class="stats shadow-md">
+			<div class="stat">
+				<div class="stat-title">Filesystem</div>
+				<div class="stat-value text-primary">{fileCount}</div>
+				<div class="stat-desc">currently in storage</div>
+			</div>
+			<div class="stat">
+				<div class="stat-title">Storage</div>
+				<div class="stat-value text-primary">{storageCount}</div>
+				<div class="stat-desc">of storage used</div>
+			</div>
+		</div>
+
+		<div class="divider" />
 
 		<div class="input-group w-full">
 			<label class="flex-1">
