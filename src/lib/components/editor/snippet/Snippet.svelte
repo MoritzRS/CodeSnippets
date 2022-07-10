@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "$lib/modules/types";
+	import CopyButton from "./CopyButton.svelte";
 	import DeleteButton from "./DeleteButton.svelte";
 	import LanguageSelector from "./LanguageSelector.svelte";
 	import Monaco from "./Monaco.svelte";
@@ -22,6 +23,7 @@
 		<div class="w-full p-2 flex flex-row justify-between">
 			<input type="text" class="input" bind:value={snippet.title} />
 			<span>
+				<CopyButton id={snippet.id} />
 				<DeleteButton id={snippet.id} />
 			</span>
 		</div>
