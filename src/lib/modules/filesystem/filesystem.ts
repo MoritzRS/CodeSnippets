@@ -13,7 +13,7 @@ export const FILESYSTEM = (function () {
 	};
 
 	const remove = async (note: Note) => {
-		await deleteFromDB(note);
+		await deleteFromDB(note.title);
 		await scan();
 	};
 

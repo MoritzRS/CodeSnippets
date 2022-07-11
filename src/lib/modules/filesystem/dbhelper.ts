@@ -39,12 +39,12 @@ export function writeToDB(key: string, value: Note) {
 	});
 }
 
-export function deleteFromDB(note: Note) {
+export function deleteFromDB(key: string) {
 	return new Promise<void>((resolve, reject) => {
 		openDB().then((db) => {
 			const transaction = db.transaction("files", "readwrite");
 			const objectStore = transaction.objectStore("files");
-			const request = objectStore.delete(note.title);
+			const request = objectStore.delete(key);
 			request.onerror = () => reject();
 			request.onsuccess = () => resolve();
 		});
