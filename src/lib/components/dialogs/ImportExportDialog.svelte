@@ -31,10 +31,11 @@
 				let note = file.notes[i];
 				if (!note.title || !note.snippets) continue;
 
-				FILESYSTEM.write(note);
+				await FILESYSTEM.write(note);
 			}
 		}
 
+		FILESYSTEM.scan();
 		BUFFER.clear();
 		DIALOG.toggleImportExport();
 	}
@@ -59,11 +60,12 @@
 		DIALOG.toggleImportExport();
 	}
 
-	function resetData() {
+	async function resetData() {
 		localStorage.clear();
 		SETTINGS.reset();
-		FILESYSTEM.clear();
 		BUFFER.clear();
+		await FILESYSTEM.clear();
+		FILESYSTEM.scan();
 	}
 
 	onMount(() => {

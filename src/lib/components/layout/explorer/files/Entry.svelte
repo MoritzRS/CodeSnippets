@@ -10,9 +10,10 @@
 		BUFFER.set(note);
 	}
 
-	function remove() {
+	async function remove() {
 		if ($BUFFER?.title == note.title) BUFFER.clear();
-		FILESYSTEM.remove(note);
+		await FILESYSTEM.remove(note);
+		FILESYSTEM.scan();
 	}
 </script>
 

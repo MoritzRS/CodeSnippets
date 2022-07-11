@@ -13,7 +13,7 @@
 		else valid = !(await FILESYSTEM.exists(name));
 	}
 
-	function create() {
+	async function create() {
 		let note: Note = {
 			title: name,
 			snippets: [
@@ -25,7 +25,8 @@
 				}
 			]
 		};
-		FILESYSTEM.write(note);
+		await FILESYSTEM.write(note);
+		FILESYSTEM.scan();
 		BUFFER.set(note);
 		name = "";
 		DIALOG.toggleCreate();

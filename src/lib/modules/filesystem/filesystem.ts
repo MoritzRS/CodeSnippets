@@ -7,20 +7,11 @@ export const FILESYSTEM = (function () {
 
 	const scan = async () => set(await getAllDBEntries());
 
-	const write = async (note: Note, rescan = true) => {
-		await writeToDB(note.title, note);
-		if (rescan) await scan();
-	};
+	const write = async (note: Note) => await writeToDB(note.title, note);
 
-	const remove = async (note: Note) => {
-		await deleteFromDB(note.title);
-		await scan();
-	};
+	const remove = async (note: Note) => await deleteFromDB(note.title);
 
-	const clear = async () => {
-		await clearDB();
-		await scan();
-	};
+	const clear = async () => await clearDB();
 
 	const exists = async (title: string) => await databaseHasEntry(title);
 

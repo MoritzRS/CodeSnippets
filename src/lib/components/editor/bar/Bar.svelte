@@ -14,7 +14,7 @@
 	});
 
 	function save() {
-		FILESYSTEM.write($BUFFER, false);
+		FILESYSTEM.write($BUFFER);
 	}
 
 	function close() {
@@ -25,6 +25,7 @@
 		await FILESYSTEM.remove($BUFFER);
 		$BUFFER.title = title;
 		await FILESYSTEM.write($BUFFER);
+		FILESYSTEM.scan();
 	}
 </script>
 

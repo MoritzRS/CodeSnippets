@@ -55,9 +55,7 @@
 			snippet.content = model.getValue();
 			length = model.getValueLength();
 
-			if ($SETTINGS.autoSave) {
-				FILESYSTEM.write($BUFFER, false);
-			}
+			if ($SETTINGS.autoSave) FILESYSTEM.write($BUFFER);
 		});
 
 		editor.onDidChangeCursorPosition(() => {
