@@ -55,10 +55,7 @@
 			snippet.content = model.getValue();
 			length = model.getValueLength();
 
-			if ($SETTINGS.autoSave) {
-				const save = async (buffer: Note) => FILESYSTEM.write(buffer);
-				save($BUFFER);
-			}
+			if ($SETTINGS.autoSave) FILESYSTEM.write($BUFFER);
 		});
 
 		editor.onDidChangeCursorPosition(() => {

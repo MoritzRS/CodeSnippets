@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { BUFFER } from "$lib/modules/buffer/buffer";
-
 	import { DIALOG } from "$lib/modules/dialogs/dialog";
 	import { FILESYSTEM } from "$lib/modules/filesystem/filesystem";
 	import type { Note } from "$lib/modules/types";
 	import Dialog from "./Dialog.svelte";
 
 	let name = "";
+	let valid = false;
 
-	function check(name: string) {
-		return FILESYSTEM.exists(name) || !name;
+	async function check() {
+		if (!name) valid = false;
+		else valid = !(await FILESYSTEM.exists(name));
 	}
 
-	function create() {
+	async function create() {
 		let note: Note = {
 			title: name,
 			snippets: [
@@ -24,7 +25,8 @@
 				}
 			]
 		};
-		FILESYSTEM.write(note);
+		await FILESYSTEM.write(note);
+		FILESYSTEM.scan();
 		BUFFER.set(note);
 		name = "";
 		DIALOG.toggleCreate();
@@ -39,16 +41,17 @@
 				type="text"
 				placeholder="Name"
 				class="input input-bordered my-3"
-				class:input-error={check(name)}
+				class:input-error={!valid}
 				autofocus
 				bind:value={name}
+				on:input={check}
 			/>
 
 			<div class="flex flex-row flex-wrap gap-1 justify-end">
 				<button type="button" class="btn btn-ghost" on:click={DIALOG.toggleCreate}>
 					<span>Cancel</span>
 				</button>
-				<button type="submit" class="btn btn-primary" on:click|preventDefault={create} disabled={check(name)}
+				<button type="submit" class="btn btn-primary" on:click|preventDefault={create} disabled={!valid}
 					>Create</button
 				>
 			</div>
